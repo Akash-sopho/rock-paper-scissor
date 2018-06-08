@@ -1,0 +1,1 @@
+My implementation of rock-paper-scissor game to be played with the computer. The game is played entirely on the console with no styling html whatsoever.
