@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rock-Paper-Scissor</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function computerPlay() {
+			var play = Math.floor((Math.random()*3) + 1);
+			if (play == 1)
+				return ("ROCK");
+			else if (play == 2)
+				return ("PAPER");
+			else if (play == 3)
+				return ("SCISSOR");
+		}
+		function playRound(playerSelection, computerSelection) {
+			playerSelection = playerSelection.toUpperCase();
+			if (playerSelection != "ROCK" && playerSelection != "PAPER" && playerSelection != "SCISSOR")
+				return ("Invalid input, try again");
+			else if (playerSelection == computerSelection) {
+				return ("Round Invalid, both chose " + playerSelection);
+			}
+			else if ((playerSelection == "ROCK" && computerSelection == "PAPER") || (playerSelection == "PAPER" && computerSelection == "SCISSOR") || (playerSelection == "SCISSOR" && computerSelection == "ROCK"))
+				return ("You Lose, " + computerSelection + " beats " + playerSelection);
+			else
+				return ("You Win, " + playerSelection + " beats " + computerSelection);
+		}
+		function game() {
+			var playerScore = 0;
+			var computerScore = 0;
+			while (playerScore != 3 && computerScore != 3) {
+				var playerSelection = prompt("Rock, paper, scissor, say shoot!", "");
+				var computerSelection = computerPlay();
+				var res = playRound(playerSelection, computerSelection);
+				console.log(res);
+				if (res.includes("Win"))
+					playerScore = playerScore + 1;
+				else if (res.includes("Lose"))
+					computerScore = computerScore + 1;
+				console.log("Score : Player " + playerScore + " Computer " + computerScore);
+			}
+			if (playerScore > computerScore) 
+				console.log("You Win " + playerScore + " - " + computerScore );
+			else
+				console.log("You Lose " + playerScore + " - " + computerScore );
+		}		
+	</script>
+	<h1 style="margin-left: 38%;font-family: Georgia;">Rock - Paper - Scissor !</h1>
+	<button onclick="game()" style="margin-left: 40%;margin-top: 5%;width: 300px;height: 50px;">Click to play on console!</button>
+</body>
+</html>
