@@ -27,27 +27,36 @@
 			else
 				return ("You Win, " + playerSelection + " beats " + computerSelection);
 		}
-		function game() {
-			var playerScore = 0;
-			var computerScore = 0;
-			while (playerScore != 3 && computerScore != 3) {
-				var playerSelection = prompt("Rock, paper, scissor, say shoot!", "");
+		var playerScore = 0;
+		var computerScore = 0;
+		function game(playerSelection) {
+			var div = document.querySelector('div');
+			if (playerScore != 5 && computerScore != 5) {
 				var computerSelection = computerPlay();
 				var res = playRound(playerSelection, computerSelection);
-				console.log(res);
 				if (res.includes("Win"))
 					playerScore = playerScore + 1;
 				else if (res.includes("Lose"))
 					computerScore = computerScore + 1;
-				console.log("Score : Player " + playerScore + " Computer " + computerScore);
+				div.innerText = res + "\n" + "Score : Player " + playerScore + " Computer " + computerScore;
 			}
-			if (playerScore > computerScore) 
-				console.log("You Win " + playerScore + " - " + computerScore );
-			else
-				console.log("You Lose " + playerScore + " - " + computerScore );
-		}		
+			else if (playerScore == 5) {
+				div.textContent = "You Win " + playerScore + " - " + computerScore ;
+				playerScore = 0;
+				computerScore = 0;
+			}
+			else if (computerScore == 5) {
+				div.textContent = "You Lose " + playerScore + " - " + computerScore ;
+				playerScore = 0;
+				computerScore = 0;
+			}
+		}
+		
 	</script>
 	<h1 style="margin-left: 38%;font-family: Georgia;">Rock - Paper - Scissor !</h1>
-	<button onclick="game()" style="margin-left: 40%;margin-top: 5%;width: 300px;height: 50px;">Click to play on console!</button>
+	<button onclick="game('rock')">Rock</button>
+	<button onclick="game('paper')">Paper</button>
+	<button onclick="game('scissor')">Scissor</button>
+	<div></div>
 </body>
 </html>
